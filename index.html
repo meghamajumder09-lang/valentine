@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd6e8, #ffeaf3);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 40px 55px;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(255, 105, 180, 0.35);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #ff6fa5;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 130px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.15s ease;
+      white-space: nowrap;
+    }
+
+    #yes {
+      background: #ff4d88;
+      color: white;
+      left: 20px;
+    }
+
+    #no {
+      background: #f2f2f2;
+      color: #555;
+      right: 20px;
+    }
+
+    #yes:hover {
+      background: #ff2f77;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Gaurav 💕</h1>
+    <p>Will you be my Valentine?</p>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes, obviously 💖</button>
+      <button id="no">No 😌</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const emojis = ["😱", "🏃‍♂️", "💀", "😭", "🙅‍♂️", "🚫"];
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 240 - 120;
+      const y = Math.random() * 120 - 60;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      // Change text to screaming emojis
+      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+      noBtn.innerText = randomEmoji + " NOOOO";
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:linear-gradient(135deg, #ffd6e8, #ffeaf3);
+          font-family:Poppins, sans-serif;
+          text-align:center;">
+          <h1 style="color:#ff4d88; font-size:42px;">
+            YAYYY Gaurav 💘🥰<br>
+            You’re officially my Valentine ❤️
+          </h1>
+        </div>
+      `;
+    }
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      heart.style.fontSize = Math.random() * 20 + 16 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 350);
+  </script>
+
+</body>
+</html>
